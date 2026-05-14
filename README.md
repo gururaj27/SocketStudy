@@ -58,31 +58,31 @@ Program :
 
 Client :
 
-import socket
+   import socket
 
-from datetime import datetime
+   from datetime import datetime
 
-s=socket.socket()
+   s=socket.socket()
 
-s.bind(('localhost',8000))
+   s.bind(('localhost',8000))
 
-s.listen(5)
+   s.listen(5)
 
-c,addr=s.accept()
+   c,addr=s.accept()
 
-print("Client Address : ",addr)
+   print("Client Address : ",addr)
 
-now = datetime.now()
+   now = datetime.now()
 
-c.send(now.strftime("%d/%m/%Y %H:%M:%S").encode())
+   c.send(now.strftime("%d/%m/%Y %H:%M:%S").encode())
 
-ack=c.recv(1024).decode()
+   ack=c.recv(1024).decode()
 
-if ack:
+   if ack:
 
-print(ack)
+   print(ack)
 
-c.close()
+   c.close()
 
 
 
@@ -90,17 +90,17 @@ c.close()
 
 Server:
 
-import socket
+   import socket
 
-s=socket.socket()
+   s=socket.socket()
 
-s.connect(('localhost',8000))
+   s.connect(('localhost',8000))
 
-print(s.getsockname())
+   print(s.getsockname())
 
-print(s.recv(1024).decode())
+   print(s.recv(1024).decode())
 
-s.send("acknowledgement recived from the server".encode())
+   s.send("acknowledgement recived from the server".encode())
 
 
 Output: 
