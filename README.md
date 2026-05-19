@@ -54,74 +54,50 @@ Socket programming finds applications in various domains, including web developm
 5.	RPC mechanisms: which allow processes to execute code on a remote server, often use socket programming for communication.
 
 
-Program : 
+##Program : 
 
-Client :
+##Client :
 
-   import socket
+    import socket
 
-   from datetime import datetime
+    from datetime import datetime
 
-   s=socket.socket()
+    s=socket.socket()
 
-   s.bind(('localhost',8000))
+    s.bind(('localhost',8000))
 
-   s.listen(5)
+    s.listen(5)
 
-   c,addr=s.accept()
+    c,addr=s.accept()
 
-   print("Client Address : ",addr)
+    print("Client Address : ",addr)
 
-   now = datetime.now()
+    now = datetime.now()
 
-   c.send(now.strftime("%d/%m/%Y %H:%M:%S").encode())
+    c.send(now.strftime("%d/%m/%Y %H:%M:%S").encode())
 
-   ack=c.recv(1024).decode()
+    ack=c.recv(1024).decode()
 
-   if ack:
+    if ack:
 
-   print(ack)
+    print(ack)
 
-   c.close()
-
-
+    c.close()
 
 
+##Server:
 
-Server:
+    import socket
 
-   import socket
+    s=socket.socket()
 
-   s=socket.socket()
+    s.connect(('localhost',8000))
 
-   s.connect(('localhost',8000))
+    print(s.getsockname())
 
-   print(s.getsockname())
+    print(s.recv(1024).decode())
 
-   print(s.recv(1024).decode())
-
-   s.send("acknowledgement recived from the server".encode())
-
-
-Output: 
-
-Client:
-
-<img width="582" height="356" alt="Screenshot 2026-05-14 141923" src="https://github.com/user-attachments/assets/c635cc47-30c1-4927-9d8a-8809f7561b66" />
-<img width="687" height="74" alt="Screenshot 2026-05-14 142016" src="https://github.com/user-attachments/assets/3e527a0a-7a2d-4cca-940c-41521be2a0b0" />
-
-
-
-Server:
-
-<img width="1540" height="200" alt="Screenshot 2026-05-14 141951" src="https://github.com/user-attachments/assets/d7adf622-39be-4244-a1b0-2d93f3715b85" />
-<img width="716" height="242" alt="Screenshot 2026-05-14 142041" src="https://github.com/user-attachments/assets/48925998-fb36-428e-94d9-c5049e20b9a9" />
-
-
-
-
-
-
+    s.send("acknowledgement recived from the server".encode())
 
 ## Result:
 Thus the study of Socket Programming Completed Successfully
